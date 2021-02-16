@@ -21,8 +21,10 @@ def percentage_calculator(df):
 
 
 
-xls_file = pd.ExcelFile("DataVizDisasterSummariesFV12.19.2016.xlsx")
-df = pd.read_excel(xls_file, sheet_name='FEMA Declarations')
+df = pd.read_excel("DataVizDisasterSummariesFV12.19.2016.xlsx",
+                   sheet_name='FEMA Declarations',
+                   engine='openpyxl')
+
 
 years = df['Unnamed: 1']
 states = df['Unnamed: 4']
@@ -63,9 +65,11 @@ fema.plot(kind='bar',x='year',y='percent',color='b',width=0.8)
 slope, intercept, r_value, p_value, std_err = stats.linregress(x,y)
 line = slope * x + intercept
 
-#%%
-
 plt.plot(x,y,'o', x, line)
+
+
+
+
 
 
 
